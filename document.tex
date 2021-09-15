@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage{multicol}
+
+\date{September 2021}
+\title{Optimisation with Progressive Sharpening}
+\author{Sahil Trivedi}
+
+\begin{document}
+	\maketitle
+	
+	\begin{multicols}{2}
+		\section{Abstract}
+		We introduce Progressive Sharpening, a technique for optimising convolutional and fully connected layers inside neural networks. We do this by creating incrementally denoised (blurred) copies of our training data. Training is initialised with the most denoised samples. Every few epochs we progressively sharpen our training samples until the network converges on the orginal training data. We discuss the mathematical intuition of our technique and compare it's performance with SoTA in image recognition on various benchmarking datasets. 
+		
+		
+		\columnbreak
+		
+		\section{Introduction}
+		Gradient descent optimises the weights of a network by minimising the error in it's neurons' activation values.
+		\\\\
+		A common tradeoff associated with gradient descent is it's tendency to converge training around local minima. Learning Rate Optimisation is generally employed to address this.
+	\end{multicols}
+	
+	
+	
+	
+	
+\end{document}
