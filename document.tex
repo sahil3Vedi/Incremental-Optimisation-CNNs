@@ -14,14 +14,14 @@
 	
 	\begin{multicols}{2}
 		\section{Abstract}
-		Introducing Progressive Sharpening, a method for optimising convolutional and fully connected layers in neural networks. This is achieved by creating incrementally denoised (blurred) copies of our training data. Training is initialised with the most denoised samples, and every few epochs we progressively sharpen the samples until the network converges on the orginal training data. We discuss the mathematical intuition of our technique and benchmark it against SoTA models on image recognition datasets. 
+		Introducing Progressive Sharpening, a method for optimising convolutional and fully connected layers in neural networks. This is achieved by creating incrementally denoised (blurred) copies of the training data. Training is initialised with the most denoised samples, and every few epochs we progressively sharpen the samples until the network converges on the orginal training data. We discuss the mathematical intuition of our technique and benchmark it against SoTA models on image recognition datasets. 
 		
 		\section{Introduction}
-		Gradient descent optimises the weights of a network by minimising the error for it's neurons' activation values. A common tradeoff associated with gradient descent is it's tendency to converge training around local minima. Despite extensive research in the area of learning rate optimisation, avoiding local minima remain a recurring challenge in deep learning.
+		Gradient descent optimises the weights of a network by minimising the error for it's neurons' activation values. A common tradeoff associated with gradient descent is it's tendency to converge training around local minima. Despite extensive research in the area of learning rate optimisation, avoiding local minima remains a recurring challenge in deep learning.
 		\\\\
 		During denoising, high level features are preserved while obscure features are smoothened out of the data. This is leveraged early on during training as we want the network paramters to distinguish high level features and avoid lower level features associated with local minima. As training progresses and high level features are generalised, we proceed to increase the level of detail in our training data making the network focus on more obscure features towards the end of training.
 		\\\\
-		It is well established that vision in human infants is blurred and improves it's focus as time passes. We ascertain the mathematical validity of progressive denoising in Section 6 of this paper.  
+		It is well established that vision in human infants is blurred and improves it's focus as time passes. We discuss the mathematical working of progressive denoising in Section 6 of this paper.  
 		
 		\section{Denoising Training Samples}
 		
