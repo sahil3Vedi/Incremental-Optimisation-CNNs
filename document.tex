@@ -23,8 +23,38 @@
 		\\\\
 		It is well established that vision in human infants is blurred and improves it's focus as time passes. We discuss the mathematical working of progressive denoising in Section 6 of this paper.  
 		
-		\includegraphics[width=150px]{assets/denoise.png}
 		\section{Denoising Training Samples}
+		\includegraphics[width=\linewidth]{assets/denoise.png}
+		\\\\
+		The figure above illustrates an original sample on the extreme left followed by it's progressively denoised copies. The original image is from the MNIST dataset and the denoising is carried out using low pass filters. The kernels for these filters are represented by the following matrices:
+		\\\\
+		$$ kernel_{1} = \begin{bmatrix}
+			1
+		\end{bmatrix} / 1 $$
+		$$ kernel_{2} = \begin{bmatrix}
+			1 & 1 \\
+			1 & 1
+		\end{bmatrix} / 4$$
+		$$ kernel_{3} = \begin{bmatrix}
+			1 & 1 & 1 \\
+			1 & 1 & 1 \\
+			1 & 1 & 1
+		\end{bmatrix} / 9$$
+		$$ kernel_{4} = \begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1
+		\end{bmatrix} / 16$$
+		$$ kernel_{5} = \begin{bmatrix}
+			1 & 1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1 \\
+			1 & 1 & 1 & 1 & 1
+		\end{bmatrix} / 25$$
+		\\\\
+		Since $kernel_{1}$ denotes an identity transform, the first two images are identical and the latter four are progressively denoised. We apply the said convolutions to the training dataset which returns denoised copies of the training data. These copies are passed to the Convolutional Neural Network while training in a predetermined order.
 		
 		\section{Training}
 			\subsection{Early Training}

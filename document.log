@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.9.20)  3 OCT 2021 23:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.9.20)  6 OCT 2021 00:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -260,32 +260,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--25
 <assets/denoise.png, id=1, 1134.639pt x 174.35138pt>
 File: assets/denoise.png Graphic file (type png)
 <use assets/denoise.png>
-Package pdftex.def Info: assets/denoise.png  used on input line 26.
-(pdftex.def)             Requested size: 150.56305pt x 23.13469pt.
+Package pdftex.def Info: assets/denoise.png  used on input line 27.
+(pdftex.def)             Requested size: 190.0pt x 29.19505pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--40
-\OT1/cmr/m/n/12 Gradient de-scent op-ti-mises the
+Underfull \hbox (badness 10000) in paragraph at lines 27--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--31
+
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./assets/denoise.png>]
- (./document.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 55--58
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+\OT1/cmr/m/n/12 Gradient de-scent op-ti-mises the
+ []
+
+[2 <./assets/denoise.png>] (./document.aux) ) 
 Here is how much of TeX's memory you used:
- 2466 strings out of 481252
- 33184 string characters out of 5915888
- 310835 words of memory out of 5000000
- 19410 multiletter control sequences out of 15000+600000
- 407539 words of font info for 43 fonts, out of 8000000 for 9000
+ 2490 strings out of 481252
+ 33440 string characters out of 5915888
+ 323835 words of memory out of 5000000
+ 19427 multiletter control sequences out of 15000+600000
+ 411886 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,6n,74p,524b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on document.pdf (2 pages, 54961 bytes).
+ 68i,7n,74p,524b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb>
+Output written on document.pdf (2 pages, 81670 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 38 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
