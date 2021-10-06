@@ -57,6 +57,9 @@
 		Since $kernel_{1}$ denotes an identity transform, the first two images are identical and the latter four are progressively denoised. We apply the said convolutions to the training dataset which returns denoised copies of the training data. These copies are passed to the Convolutional Neural Network while training in a predetermined order.
 		
 		\section{Training}
+		The multiple sets of training data obtained from the previous step can be referred to as $t_{1},t_{2},...t{5}$ where 
+		$$t_{n} = training\_data \circledast kernel_{n} $$
+
 			\subsection{Early Training}
 			\subsection{Sharpening Training Samples}
 			\subsection{Convergence on Original Samples}
