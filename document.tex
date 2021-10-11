@@ -13,6 +13,7 @@
 	\maketitle
 	
 	\begin{multicols}{2}
+		
 		\section{Abstract}
 		Introducing Progressive Sharpening, a method for optimising convolutional and fully connected layers in neural networks. This is achieved by creating incrementally denoised (blurred) copies of the training data. Training is initialised with the most denoised samples, and every few epochs we progressively sharpen the samples until the network converges on the orginal training data. We discuss the mathematical intuition of our technique and benchmark it against SoTA models on image recognition datasets. 
 		
@@ -21,52 +22,36 @@
 		\\\\
 		During denoising, high level features are preserved while obscure features are smoothened out of the data. This is leveraged early on during training as we want the network paramters to distinguish high level features and avoid lower level features associated with local minima. As training progresses and high level features are generalised, we proceed to increase the level of detail in our training data making the network focus on more obscure features towards the end of training.
 		\\\\
-		It is well established that vision in human infants is blurred and improves it's focus as time passes. We discuss the mathematical working of progressive denoising in Section 6 of this paper.  
+		It is well established that vision in human infants is blurred and improves it's focus as time passes. We discuss the mathematical intuition behind progressive denoising in Section 6 of this paper.  
 		
 		\section{Denoising Training Samples}
 		\includegraphics[width=\linewidth]{assets/denoise.png}
 		\\\\
-		The figure above illustrates an original sample on the extreme left followed by it's progressively denoised copies. The original image is from the MNIST dataset and the denoising is carried out using low pass filters. The kernels for these filters are represented by the following matrices:
-		\\\\
-		$$ kernel_{1} = \begin{bmatrix}
-			1
-		\end{bmatrix} / 1 $$
-		$$ kernel_{2} = \begin{bmatrix}
-			1 & 1 \\
-			1 & 1
-		\end{bmatrix} / 4$$
-		$$ kernel_{3} = \begin{bmatrix}
-			1 & 1 & 1 \\
-			1 & 1 & 1 \\
-			1 & 1 & 1
-		\end{bmatrix} / 9$$
-		$$ kernel_{4} = \begin{bmatrix}
-			1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1
-		\end{bmatrix} / 16$$
-		$$ kernel_{5} = \begin{bmatrix}
-			1 & 1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 & 1 \\
-			1 & 1 & 1 & 1 & 1
-		\end{bmatrix} / 25$$
+		The figure illustrates an original sample on the extreme left followed by it's progressively denoised copies. The original image is from the MNIST dataset and the denoising is carried out using low pass filters. The kernels for these filters are represented by the following matrices:
+		$$ kernel_{N} = \frac{J_{N}}{N^2} $$
+		where $J_{N}$ is an $N \times N$ matrix with all elements equal to $1$.
 		\\\\
 		Since $kernel_{1}$ denotes an identity transform, the first two images are identical and the latter four are progressively denoised. We apply the said convolutions to the training dataset which returns denoised copies of the training data. These copies are passed to the Convolutional Neural Network while training in a predetermined order.
 		
 		\section{Training}
-		The multiple sets of training data obtained from the previous step can be referred to as $t_{1},t_{2},...t{5}$ where 
-		$$t_{n} = training\_data \circledast kernel_{n} $$
+		The multiple sets of training data obtained from the previous step are referred to as $train_{1},train_{2}, \hdots ,train_{K}$ where 
+		\\\\
+		$$train_{n} = training\_data \circledast kernel_{n} $$
+		and $K$ is equal to the denoising intervals picked for the data. $\circledast$ is a convolutional operatior and the kernel denotes a low-pass filter for the training data. 
+		\\\\
+		The higher the value of $n$, the more denoised the data. We begin training with the most denoised copies of the training data. After few epochs we replace the training data with it's next most denoised copy. This process repeats $K$ times before network loss converges for the least denoised samples i.e. the original training data itself.
+		
+		\section{Design \\Considerations}
+		The specifics for implementing Progressive Sharpening largely depend on the problem domain. This paper implements the technique in context of Image Classification, but the principle extends for classifying any signal carrying spatial or temporal information.
+		\subsection{Network \\Architecture}
 
-			\subsection{Early Training}
-			\subsection{Sharpening Training Samples}
-			\subsection{Convergence on Original Samples}
-			
+		\subsection{Denoising Kernel}
+
+		\subsection{Training Set \\Optimisation}
+		
 		\section{Benchmarking}
 		
-		\section{Mathematical Explanation}
+		\section{Mathematical \\Intuition}
 		Gradient descent optimises the weights of a network by minimising the error in it's neurons' activation values. A common tradeoff associated with gradient descent is it's tendency to converge training around local minima. Learning Rate Optimisation is generally employed to address this.
 		\\
 		- Visualising W vs E hypersurface
