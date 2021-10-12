@@ -24,7 +24,16 @@
 		\\\\
 		It is well established that vision in human infants is blurred and improves it's focus as time passes. We discuss the mathematical intuition behind progressive denoising in Section 6 of this paper.  
 		
-		\section{Denoising Training Samples}
+		\section{Network \\Architecture}
+		Progressive Sharpening can potentially increase the accuracy of a model from moderately high to extremely high. For this to work we take a model with an acceptable accuracy/loss and make a few design changes based on our understanding of the problem domain along with some trial and error.
+		\\\\
+		In the context of Image Classification on the MNIST dataset, LeNet-5 is a popular architecture with consistently high performance. We modify LeNet-5 by adding dropout to it's dense layers. The model summary is given below.
+		\\\\
+		\includegraphics[width=\linewidth]{assets/summary.png}
+
+		\section{Training}
+		The specifics for implementing Progressive Sharpening largely depend on the problem domain. This paper implements the technique in context of Image Classification, but the principle extends for classifying information with any dimensional encoding.
+		\subsection{Denoising Training Samples}
 		\includegraphics[width=\linewidth]{assets/denoise.png}
 		\\\\
 		The figure illustrates an original sample on the extreme left followed by it's progressively denoised copies. The original image is from the MNIST dataset and the denoising is carried out using low pass filters. The kernels for these filters are represented by the following matrices:
@@ -32,22 +41,12 @@
 		where $J_{N}$ is an $N \times N$ matrix with all elements equal to $1$.
 		\\\\
 		Since $kernel_{1}$ denotes an identity transform, the first two images are identical and the latter four are progressively denoised. We apply the said convolutions to the training dataset which returns denoised copies of the training data. These copies are passed to the Convolutional Neural Network while training in a predetermined order.
-		
-		\section{Training}
+		\subsection{Training Set \\Optimisation}
 		The multiple sets of training data obtained from the previous step are referred to as $train_{1},train_{2}, \hdots ,train_{K}$ where 
-		\\\\
 		$$train_{n} = training\_data \circledast kernel_{n} $$
-		and $K$ is equal to the denoising intervals picked for the data. $\circledast$ is a convolutional operatior and the kernel denotes a low-pass filter for the training data. 
+		and $K$ is equal to the denoising intervals picked for the data. $\circledast$ is a convolutional operator and the kernel denotes a low-pass filter for the training data. 
 		\\\\
 		The higher the value of $n$, the more denoised the data. We begin training with the most denoised copies of the training data. After few epochs we replace the training data with it's next most denoised copy. This process repeats $K$ times before network loss converges for the least denoised samples i.e. the original training data itself.
-		
-		\section{Design \\Considerations}
-		The specifics for implementing Progressive Sharpening largely depend on the problem domain. This paper implements the technique in context of Image Classification, but the principle extends for classifying any signal carrying spatial or temporal information.
-		\subsection{Network \\Architecture}
-
-		\subsection{Denoising Kernel}
-
-		\subsection{Training Set \\Optimisation}
 		
 		\section{Benchmarking}
 		
