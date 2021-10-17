@@ -6,7 +6,7 @@
 \usepackage{multicol}
 
 \date{September 2021}
-\title{Optimisation with Progressive Sharpening}
+\title{Optimisation with Progressive Sharpening in Deep Neural Networks}
 \author{Sahil Trivedi}
 
 \begin{document}
@@ -49,11 +49,23 @@
 		The higher the value of $n$, the more denoised the data. We begin training with the most denoised copies of the training data. After few epochs we replace the training data with it's next most denoised copy. This process repeats $K$ times before network loss converges for the least denoised samples i.e. the original training data itself.
 		
 		\section{Benchmarking}
+		We compare the performance of our model with the LeNet-5 architecture introduced in the 1999 paper "Object Recognition with Gradient Based Learning" by LeCun et al.
+		\\\\
+		By comparing the training plots of both models we notice areas where our model performs better than LeNet-5.
+		\\\\
+		\includegraphics[width=\linewidth]{assets/withoutdenoising.png}
+		\\\\
+		\includegraphics[width=\linewidth]{assets/withdenoising.png}
 		
 		\section{Mathematical \\Intuition}
 		Gradient descent optimises the weights of a network by minimising the error in it's neurons' activation values. A common tradeoff associated with gradient descent is it's tendency to converge training around local minima. Learning Rate Optimisation is generally employed to address this.
 		\\
 		- Visualising W vs E hypersurface
+
+		\section{Future Scope}
+		- Shuffling Denoised Samples with the original samples while training.
+		- Progressive Denoising in Time Variant Signals
+		- Similar Techniques and Approaches
 		
 	\end{multicols}
 
